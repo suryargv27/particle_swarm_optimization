@@ -82,6 +82,3 @@ The function curve and best positions will be shown:
 ## License
 This project is licensed under the MIT License.
 
-## Author
-[Your Name](https://github.com/yourusername)
-

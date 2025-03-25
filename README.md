@@ -1,105 +1,87 @@
 # Particle Swarm Optimization (PSO)
 
-## Overview
-This project implements the **Particle Swarm Optimization (PSO)** algorithm in Python using **SymPy, NumPy, and Matplotlib**. PSO is a heuristic optimization technique inspired by the social behavior of bird flocks and fish schools. It is widely used for solving continuous optimization problems.
+## Introduction
+This repository contains an implementation of the **Particle Swarm Optimization (PSO) algorithm** in Python. The implementation supports both **1D and 2D function optimization**, visualizing the swarm's movement towards the optimal solution.
 
-## How It Works
-PSO maintains a **swarm of particles**, where each particle represents a candidate solution in the search space. The movement of each particle is influenced by:
-- **Personal Best Position** (*pbest*): The best position found by the particle itself.
-- **Global Best Position** (*gbest*): The best position found by any particle in the swarm.
-
-Each particle updates its velocity and position using the following equations:
+## Algorithm Explanation
+**Particle Swarm Optimization (PSO)** is a population-based optimization technique inspired by the behavior of bird flocks and fish schools. It searches for the optimal solution by iteratively updating the positions and velocities of particles in a search space.
 
 ### Mathematical Formulation
 Let:
-- \( \mathbf{x}_i^t \) be the position of particle \( i \) at iteration \( t \)
-- \( \mathbf{v}_i^t \) be the velocity of particle \( i \) at iteration \( t \)
-- \( \mathbf{p}_i \) be the personal best position of particle \( i \)
-- \( \mathbf{g} \) be the global best position found by the swarm
-- \( w \) be the inertia weight (controls exploration and exploitation)
-- \( c_1, c_2 \) be acceleration coefficients (typically set to 1.492)
-- \( r_1, r_2 \) be random values drawn from \( [0,1] \)
+- $\mathbf{x}_i^t$ be the position of particle $i$ at iteration $t$.
+- $\mathbf{v}_i^t$ be the velocity of particle $i$ at iteration $t$.
+- $\mathbf{p}_i$ be the best position found by particle $i$ (personal best).
+- $\mathbf{g}$ be the global best position found by any particle in the swarm.
 
-#### Velocity Update Equation:
-\[
+The velocity and position update rules are:
+
+$$
 \mathbf{v}_i^{t+1} = w \mathbf{v}_i^t + c_1 r_1 (\mathbf{p}_i - \mathbf{x}_i^t) + c_2 r_2 (\mathbf{g} - \mathbf{x}_i^t)
-\]
+$$
 
-#### Position Update Equation:
-\[
+$$
 \mathbf{x}_i^{t+1} = \mathbf{x}_i^t + \mathbf{v}_i^{t+1}
-\]
+$$
 
-The process iterates until a stopping criterion (such as a maximum number of iterations) is met.
+where:
+- $w$ is the inertia weight (controls exploration vs. exploitation).
+- $c_1, c_2$ are acceleration coefficients (cognitive and social factors).
+- $r_1, r_2 \sim U(0,1)$ are random numbers sampled from a uniform distribution.
 
----
-## Implementation Details
-### Dependencies
-Make sure you have the following Python libraries installed:
-```sh
-pip install sympy numpy matplotlib
+## Features
+- Works for **any dimension (1D, 2D, etc.)**
+- **Graphical visualization** for 1D and 2D functions
+- Configurable number of **particles, iterations, and bounds**
+- Contour plots and trajectory visualization for 2D optimization problems
+
+## Installation
+Clone the repository:
+```bash
+git clone https://github.com/yourusername/particle-swarm-optimization.git
+cd particle-swarm-optimization
 ```
 
-### Code Structure
-- `Particle` class: Represents a particle in the swarm.
-- `sub(f, x)`: Evaluates the function at a given position.
-- `contour(f, min, max)`: Generates contour plots for visualization.
-- `plot2d(gbest_arr)`: Plots 2D trajectories of particles.
-- `plot1d(f, min, max, gbest_arr)`: Plots function values in 1D.
-- `pso(n, dim, min, max, f, max_iter)`: Runs the PSO algorithm and finds the optimal solution.
+Install dependencies:
+```bash
+pip install numpy sympy matplotlib
+```
 
-### Running the PSO Algorithm
-To execute the PSO optimization, run the script and provide the following inputs:
-```sh
+## Usage
+Run the script:
+```bash
 python pso.py
 ```
 
-### Example Input:
+### Input Parameters
+When prompted, enter the following details:
+- **Dimension**: Number of dimensions (1 or 2 for visualization)
+- **Function**: Mathematical function to optimize (e.g., `x1**2 + x2**2`)
+- **Min & Max**: Search space boundaries
+- **Number of Particles**: Number of swarm particles
+- **Max Iterations**: Number of iterations to run
+
+### Example Input
 ```
 Enter the Dimension: 2
-Enter the Function: x1**2 + x2**2  # Minimizing a quadratic function
+Enter the Function: x1**2 + x2**2
 Min: -10
 Max: 10
 Enter No. of Particles: 30
 Enter Max Iterations: 100
 ```
 
-### Expected Output
-- The script prints intermediate values of positions, velocities, and fitness.
-- The **best position** and **best function value** are displayed at the end.
-- For 2D problems, contour plots visualize particle movement.
-- A convergence plot shows the best fitness value over iterations.
-
-### Example Output:
-```
-Best value: 0.0001
-Best position: [0.001, 0.002]
-```
-
----
 ## Visualization
-- **2D Contour Plot**: Shows the movement of particles towards the optimum.
-- **3D Surface Plot**: Displays the function's shape.
-- **Convergence Plot**: Illustrates fitness improvement over iterations.
+### 2D Example
+The contour plot and swarm movement will be displayed:
+![PSO Contour Plot](docs/pso_contour.png)
 
-## Applications of PSO
-- Function optimization
-- Machine learning hyperparameter tuning
-- Engineering design problems
-- Financial modeling
-
-## References
-- Kennedy, J., & Eberhart, R. (1995). *Particle Swarm Optimization*. IEEE International Conference on Neural Networks.
-- Clerc, M. (2010). *Particle Swarm Optimization*. Wiley.
+### 1D Example
+The function curve and best positions will be shown:
+![PSO 1D Plot](docs/pso_1d.png)
 
 ## License
-This project is open-source and can be used freely for educational purposes.
+This project is licensed under the MIT License.
 
----
-### Future Enhancements
-- Implementing constraints in optimization.
-- Hybrid approaches combining PSO with other optimization techniques.
-- Performance tuning with adaptive parameters.
-
----
+## Author
+[Your Name](https://github.com/yourusername)
 
